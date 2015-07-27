@@ -296,8 +296,14 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
     }
 
     top += sectionInset.top;
-    for (idx = 0; idx < columnCount; idx++) {
-      self.columnHeights[section][idx] = @(top);
+    if (section == 0) {
+      for (idx = 0; idx < columnCount; idx++) {
+        self.columnHeights[section][idx] = @(top);
+      }
+    } else {
+      for (idx = 0; idx < columnCount; idx++) {
+        self.columnHeights[section][idx] = self.columnHeights[section - 1][idx];
+      } 
     }
 
     /*
@@ -362,8 +368,10 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
       top = CGRectGetMaxY(attributes.frame) + footerInset.bottom;
     }
 
-    for (idx = 0; idx < columnCount; idx++) {
-      self.columnHeights[section][idx] = @(top);
+    if (section == numberOfSections - 1) {
+      for (idx = 0; idx < columnCount; idx++) {
+        self.columnHeights[section][idx] = @(top);
+      }      
     }
   } // end of for (NSInteger section = 0; section < numberOfSections; ++section)
 

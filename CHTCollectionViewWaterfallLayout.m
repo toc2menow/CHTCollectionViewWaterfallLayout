@@ -368,7 +368,7 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
       top = CGRectGetMaxY(attributes.frame) + footerInset.bottom;
     }
 
-    if (section == numberOfSections - 1) {
+    if (section == numberOfSections - 1 || columnCount == 1) {
       for (idx = 0; idx < columnCount; idx++) {
         self.columnHeights[section][idx] = @(top);
       }      
